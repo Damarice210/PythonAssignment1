@@ -1,0 +1,36 @@
+# try:
+#     filename = input("Enter the filename: ")
+#     with open(filename, 'r', encoding='utf-8') as file:  # Explicitly specify encoding
+#         content = file.read()
+#         print(content)
+# except FileNotFoundError:
+#     print(f"Error: File '{filename}' not found.")
+# except PermissionError:
+#     print(f"Error: Permission denied to   
+#  read '{filename}'.")
+
+def read_file(filename):
+    """Reads a file and handles potential errors.
+
+    Args:
+        filename (str): The name of the file to read.
+
+    Returns:
+        str: The contents of the file, or an error message.
+    """
+
+    try:
+        with open(filename, 'r') as file:
+            return file.read()
+    except FileNotFoundError:
+        return f"Error: File '{filename}' not found."
+    except IOError as e:
+        return f"Error: Could not read file '{filename}': {e}"
+
+# Get the filename from the user
+filename = input("Enter the filename: ")
+
+# Read the file and handle potential errors
+file_contents = read_file(filename)
+
+print(file_contents)
